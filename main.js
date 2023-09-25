@@ -1,4 +1,5 @@
 let container = document.getElementById('container');
+let postMetaIcon = document.getElementById('post-meta__icon');
 const posts = [
     {
         "id": 1,
@@ -57,13 +58,29 @@ const posts = [
     }
 ];
 
+
+let post;
 for (post of posts) {
+
+    // Divido la parola 
+    let inizialiNome = post.author.name.split(" ");
     
+    // Metodo Map per estrarre le prime iniziali 
+    let inizialiArray = inizialiNome.map(function(firstChar) {
+        return firstChar[0];
+    });
+    // Unisco le due iniziali in una stringa
+    let iniziali = inizialiArray.join("");
+    //Creo una condizione in cui andare ad applicare le iniziali
+    if (post.author.image == null) {
+        post.author.image = `<div class="profile-pic-default" <span>${iniziali}</span> </div>`
+    }
+
     post = `<div class="post">
     <div class="post__header">
       <div class="post-meta">
         <div class="post-meta__icon">
-          <img class="profile-pic" src="${post.author.image}" alt="${post.name}">
+          <img class="profile-pic" src="${post.author.image}" alt="${post.author.image}">
         </div>
         <div class="post-meta__data">
           <div class="post-meta__author">${post.author.name}</div>
@@ -80,7 +97,7 @@ for (post of posts) {
     <div class="post__footer">
       <div class="likes js-likes">
         <div class="likes__cta">
-          <a class="like-button js-like-button" data-postid="1" href="#">
+          <a class="like-button js-like-button" data-postid="${post.id}" href="">
             <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
             <span class="like-button__label">Mi Piace</span>
           </a>
@@ -94,4 +111,5 @@ for (post of posts) {
   </div>`
   container.innerHTML += post;
 
+    
 }
