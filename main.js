@@ -62,6 +62,15 @@ const posts = [
 let post;
 for (post of posts) {
 
+    /* European Dates */
+    let americanData = new Date(post.created);
+    const giorno = americanData.getDate();
+    const mese = americanData.getMonth() + 1;
+    const anno = americanData.getFullYear();
+    const europeanData = giorno + "-" + (mese < 10 ? "0" : "") + mese + "-" + anno;
+
+    console.log(europeanData);
+
     /* Initial CharName */
     // Divido la parola 
     let inizialiNome = post.author.name.split(" ");
@@ -87,7 +96,7 @@ for (post of posts) {
         </div>
         <div class="post-meta__data">
           <div class="post-meta__author">${post.author.name}</div>
-          <div class="post-meta__time">${post.created}</div>
+          <div class="post-meta__time">${europeanData}</div>
         </div>
       </div>
     </div>
@@ -112,7 +121,7 @@ for (post of posts) {
       </div>
     </div>
   </div>`
+  
   container.innerHTML += post;
 
-    
 }
