@@ -58,6 +58,7 @@ const posts = [
 ];
 
 for (post of posts) {
+    
     post = `<div class="post">
     <div class="post__header">
       <div class="post-meta">
@@ -92,6 +93,5 @@ for (post of posts) {
     </div>
   </div>`
   container.innerHTML += post;
-    console.log(post);
 
 }
