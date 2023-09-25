@@ -62,9 +62,9 @@ const posts = [
 let post;
 for (post of posts) {
 
+    /* Initial CharName */
     // Divido la parola 
     let inizialiNome = post.author.name.split(" ");
-    
     // Metodo Map per estrarre le prime iniziali 
     let inizialiArray = inizialiNome.map(function(firstChar) {
         return firstChar[0];
@@ -72,15 +72,18 @@ for (post of posts) {
     // Unisco le due iniziali in una stringa
     let iniziali = inizialiArray.join("");
     //Creo una condizione in cui andare ad applicare le iniziali
+    let dinamicPic;
     if (post.author.image == null) {
-        post.author.image = `<div class="profile-pic-default" <span>${iniziali}</span> </div>`
+        dinamicPic = `<img class="profile-pic-default" alt="${iniziali}" <img>` 
+    }else{
+        dinamicPic = `<img class="profile-pic" src="${post.author.image}" alt="${post.author.image}">`
     }
 
     post = `<div class="post">
     <div class="post__header">
       <div class="post-meta">
         <div class="post-meta__icon">
-          <img class="profile-pic" src="${post.author.image}" alt="${post.author.image}">
+          ${dinamicPic}
         </div>
         <div class="post-meta__data">
           <div class="post-meta__author">${post.author.name}</div>
